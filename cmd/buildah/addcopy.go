@@ -13,6 +13,7 @@ import (
 type addCopyResults struct {
 	addHistory bool
 	chown      string
+	from       string
 	quiet      bool
 }
 
@@ -59,6 +60,7 @@ func init() {
 	copyFlags := copyCommand.Flags()
 	copyFlags.SetInterspersed(false)
 	copyFlags.BoolVar(&copyOpts.addHistory, "add-history", false, "add an entry for this operation to the image's history.  Use BUILDAH_HISTORY environment variable to override. (default false)")
+	copyFlags.StringVar(&copyOpts.from, "from", "", "set the name of container to copy content from. (default copy from host)")
 	copyFlags.StringVar(&copyOpts.chown, "chown", "", "set the user and group ownership of the destination content")
 	copyFlags.BoolVarP(&copyOpts.quiet, "quiet", "q", false, "don't output a digest of the newly-added/copied content")
 
@@ -101,6 +103,7 @@ func addAndCopyCmd(c *cobra.Command, args []string, verb string, extractLocalArc
 	digester := digest.Canonical.Digester()
 	options := buildah.AddAndCopyOptions{
 		Chown:  iopts.chown,
+		From:   iopts.from,
 		Hasher: digester.Hash(),
 	}
 

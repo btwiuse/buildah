@@ -27,6 +27,9 @@ type AddAndCopyOptions struct {
 	// newly-added content, potentially overriding permissions which would
 	// otherwise match those of local files and directories being copied.
 	Chown string
+	// From is a spec for the container where contents should be copied from.
+	// If set to empty string, local files and directories will be copied.
+	From string
 	// All of the data being copied will pass through Hasher, if set.
 	// If the sources are URLs or files, their contents will be passed to
 	// Hasher.
@@ -111,6 +114,21 @@ func (b *Builder) Add(destination string, extract bool, options AddAndCopyOption
 	excludes, err := dockerIgnoreMatcher(options.Excludes, options.ContextDir)
 	if err != nil {
 		return err
+	}
+	if options.From != "" {
+		s, err := OpenBuilder(b.store, options.From)
+		srcMountPoint, err := s.Mount(s.MountLabel)
+		if err != nil {
+			return err
+		}
+		for i, src := range source {
+			source[i] = filepath.Join(srcMountPoint, src)
+		}
+		defer func() {
+			if err2 := s.Unmount(); err2 != nil {
+				logrus.Errorf("error unmounting container: %v", err2)
+			}
+		}()
 	}
 	mountPoint, err := b.Mount(b.MountLabel)
 	if err != nil {
