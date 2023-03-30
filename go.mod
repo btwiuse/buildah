@@ -8,7 +8,7 @@ require (
 	github.com/containers/image/v5 v5.4.4
 	github.com/containers/ocicrypt v1.0.2
 	github.com/containers/storage v1.20.2
-	github.com/cyphar/filepath-securejoin v0.2.2
+	github.com/cyphar/filepath-securejoin v0.2.3
 	github.com/docker/distribution v2.7.1+incompatible
 	github.com/docker/go-units v0.4.0
 	github.com/docker/libnetwork v0.8.0-dev.2.0.20190625141545-5a177b73e316
@@ -21,23 +21,22 @@ require (
 	github.com/onsi/gomega v1.10.1
 	github.com/opencontainers/go-digest v1.0.0
 	github.com/opencontainers/image-spec v1.0.2-0.20190823105129-775207bd45b6
-	github.com/opencontainers/runc v1.0.0-rc90
-	github.com/opencontainers/runtime-spec v1.0.3-0.20200520003142-237cc4f519e2
+	github.com/opencontainers/runc v1.1.5
+	github.com/opencontainers/runtime-spec v1.0.3-0.20210326190908-1c3f411f0417
 	github.com/opencontainers/runtime-tools v0.9.0
-	github.com/opencontainers/selinux v1.5.2
+	github.com/opencontainers/selinux v1.10.0
 	github.com/openshift/imagebuilder v1.1.5-0.20200523124444-e30756856853
 	github.com/pkg/errors v0.9.1
 	github.com/seccomp/containers-golang v0.5.0
-	github.com/seccomp/libseccomp-golang v0.9.1
-	github.com/sirupsen/logrus v1.6.0
+	github.com/seccomp/libseccomp-golang v0.9.2-0.20220502022130-f33da4d89646
+	github.com/sirupsen/logrus v1.8.1
 	github.com/spf13/cobra v0.0.7
 	github.com/spf13/pflag v1.0.5
 	github.com/stretchr/testify v1.6.1
-	github.com/syndtr/gocapability v0.0.0-20180916011248-d98352740cb2
-	github.com/vishvananda/netlink v1.1.0 // indirect
+	github.com/syndtr/gocapability v0.0.0-20200815063812-42c35b437635
 	go.etcd.io/bbolt v1.3.4
 	golang.org/x/crypto v0.0.0-20200423211502-4bdfaf469ed5
-	golang.org/x/sys v0.0.0-20200519105757-fe76b779f299
+	golang.org/x/sys v0.0.0-20211116061358-0a5406a5449c
 )
 
 replace github.com/sirupsen/logrus => github.com/sirupsen/logrus v1.4.2
